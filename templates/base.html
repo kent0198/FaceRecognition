@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width", initial-scale=1>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>Face Recognition </title>
+  </head>
+  <style>
+/*   .container-fluid{
+    background-color: rgb(243, 230, 240);
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+
+  } */
+/*   .container{
+    float: right;
+    padding-top: 80px;
+    margin-left: 30px;
+    text-align: center;
+  } */
+  body {
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+	background: #d8ecf2;
+  color: RGBA(67, 83, 99, 1);
+}
+
+.container {
+  float: left;
+  margin: 0 auto;
+  width: 400px;
+	max-width: 380px;
+  border-radius: 10px;
+ 
+}
+
+h2 {
+  padding: 1.8rem 0;
+  
+  font-size: 2.8rem;
+  
+  text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.4);
+
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+h3,p{
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+nav {
+  -webkit-box-flex: auto;
+  -webkit-flex: auto;
+  -ms-flex: auto;
+  flex: auto;
+  position: relative;
+  padding: .6125rem .6152rem 1.6125rem;
+} 
+
+li a { 
+  text-decoration: none;
+  color: RGBA(67, 83, 99, 1);
+  cursor: -webkit-zoom-in;
+  cursor:         zoom-in;
+}
+
+ul:hover a {
+  opacity: .8;
+  
+  -webkit-transform: scale(0.97);
+  transform: scale(0.97);
+}
+
+ul a {
+  display: block;
+  position: relative;
+  padding: .75rem 1rem 1rem;
+  
+  -webkit-transition: -webkit-transform .22s,box-shadow .22s;
+  transition: transform .22s,box-shadow .22s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  user-drag: none;
+  box-shadow: 0 0 0 -.25rem rgba(0,0,0,.1);
+}
+
+ul a:focus, ul a:hover {
+  outline: 0;
+  box-shadow: 0 .5rem 0 -.25rem rgba(0,0,0,.1);
+  opacity: 1;
+  -webkit-transform: scale(1.03);
+  transform:scale(1.03);
+  -webkit-transition: -webkit-transform .088s,box-shadow .088s;
+  transition: transform .088s,box-shadow .088s;
+  z-index: 1;
+}
+
+.menu a:nth-child(1) {
+  background: #95c5db;
+}
+.menu a:nth-child(2) {
+  background: #94c1db;
+}
+.menu a:nth-child(3) {
+  background: #94bddb;
+}
+.menu a:nth-child(4) {
+  background: #94b9db;
+}
+.menu a:nth-child(5) {
+  background: #94b5db;
+}
+.menu a:nth-child(6) {
+  background: #94b2db;
+}
+
+.menu a:nth-child(6):hover {
+  cursor: pointer;
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes flipInX {
+  0% {
+    -webkit-transform: perspective(400px) rotateX(90deg);
+    transform: perspective(400px) rotateX(90deg);
+    opacity: 0;
+  }
+
+  40% {
+    -webkit-transform: perspective(400px) rotateX(-10deg);
+    transform: perspective(400px) rotateX(-10deg);
+  }
+
+  70% {
+    -webkit-transform: perspective(400px) rotateX(10deg);
+    transform: perspective(400px) rotateX(10deg);
+  }
+
+  100% {
+    -webkit-transform: perspective(400px) rotateX(0deg);
+    transform: perspective(400px) rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes flipInX {
+  0% {
+    -webkit-transform: perspective(400px) rotateX(90deg);
+    -ms-transform: perspective(400px) rotateX(90deg);
+    transform: perspective(400px) rotateX(90deg);
+    opacity: 0;
+  }
+
+  40% {
+    -webkit-transform: perspective(400px) rotateX(-10deg);
+    -ms-transform: perspective(400px) rotateX(-10deg);
+    transform: perspective(400px) rotateX(-10deg);
+  }
+
+  70% {
+    -webkit-transform: perspective(400px) rotateX(10deg);
+    -ms-transform: perspective(400px) rotateX(10deg);
+    transform: perspective(400px) rotateX(10deg);
+  }
+
+  100% {
+    -webkit-transform: perspective(400px) rotateX(0deg);
+    -ms-transform: perspective(400px) rotateX(0deg);
+    transform: perspective(400px) rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+.flipInX {
+  -webkit-backface-visibility: visible !important;
+  -ms-backface-visibility: visible !important;
+  backface-visibility: visible !important;
+  -webkit-animation-name: flipInX;
+  animation-name: flipInX;
+}
+  </style>
+  <body>
+   <!--  <nav class="header navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid" >
+        <a style="font-size:40px;color:rgb(223, 105, 37) ;"  class="navbar-brand" href="" >Face Recognition</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a style="font-size:30px;color:rgb(223, 105, 85) ;"  class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Menu
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{{ url_for('studentList') }}">Xem danh sách sinh viên</a></li>
+                  <li><a class="dropdown-item" href="{{ url_for('addNewStudent') }}">Thêm mới sinh viên</a></li>
+                  <li><a class="dropdown-item" href="{{ url_for('detectStudent') }}">Nhận diện sinh viên</a></li>
+                </ul>
+              </li>
+        </ul>
+        </div>
+    </div>
+    </nav> -->
+    <div class="container ta-c">
+      <h2 class="p-r">MapMap</h2>
+      <nav class="menu animated flipInX">
+        <ul class="no-ls ta-l t-all">
+          <li class="rounded-pill">
+            <a href="" class="rounded-pill">
+              <h3>Face Recognition</h3>
+              <p>Nhan dien khuon mat</p>
+              </a>
+            </li>
+            <li>
+                    <a href="{{ url_for('studentList') }}" class="rounded-pill">
+                        <h3>View list</h3>
+                        <p>Xem danh sach</p>
+                    </a>
+            </li>
+            <li>
+                    <a href="{{ url_for('addNewStudent') }}"class="rounded-pill" >
+                        <h3>Add new students</h3>
+                        <p>Them moi sinh vien</p>
+                    </a>
+            </li>
+            <li>
+                    <a href="{{ url_for('detectStudent') }}" class="rounded-pill">
+                        <h3>Student identification</h3>
+                        <p>Nhan dien sinh vien</p>
+                    </a>
+            </li>
+          </ul>
+       </nav>
+    </div>
+    <div class="container">
+        {% block content %} {% endblock %}
+     
+    </div>
+
+    <!-- Optional JavaScript -->
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+  </body>
+</html>
